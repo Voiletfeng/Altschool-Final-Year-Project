@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restx import Api
+from flask_cors import CORS
 from .utils import db
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
@@ -19,5 +20,6 @@ def create_app():
     api = Api(app, title="Violet Api Class")
     api.add_namespace(auth_namespace, path='/api/auth')
     api.add_namespace(link_namespace, path='/api/link')
+    CORS(app, origin=api)
     
     return app
